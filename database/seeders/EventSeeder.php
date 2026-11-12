@@ -1,0 +1,91 @@
+<?php
+
+namespace Database\Seeders;
+
+use App\Models\Event;
+use Illuminate\Database\Seeder;
+
+class EventSeeder extends Seeder
+{
+    public function run(): void
+    {
+        $eventos = [
+            [
+                'title' => 'Pastelería francesa',
+                'description' => 'Aprendé a preparar clásicos de la pastelería francesa y conocé sus técnicas principales.',
+                'category' => 'Pastelería',
+                'date' => '2026-11-07',
+                'location' => 'Dulce Estudio - Aula 1',
+                'image' => '/images/pasteleria-francesa.png',
+                'price' => 18000,
+            ],
+            [
+                'title' => 'Repostería vegana',
+                'description' => 'Descubrí cómo preparar postres sin ingredientes de origen animal.',
+                'category' => 'Repostería vegana',
+                'date' => '2026-11-14',
+                'location' => 'Online',
+                'image' => '/images/reposteria-vegana.png',
+                'price' => 15000,
+            ],
+            [
+                'title' => 'Panadería artesanal',
+                'description' => 'Conocé las bases del amasado y la fermentación para elaborar panes caseros.',
+                'category' => 'Panadería',
+                'date' => '2026-11-21',
+                'location' => 'Dulce Estudio - Aula 2',
+                'image' => '/images/panaderia-artesanal.png',
+                'price' => 16000,
+            ],
+            [
+                'title' => 'Galletitas caseras',
+                'description' => 'Prepará galletitas de manteca, avena y chips de chocolate con recetas sencillas.',
+                'category' => 'Pastelería',
+                'date' => '2026-11-28',
+                'location' => 'Dulce Estudio - Aula 1',
+                'image' => '/images/galletitas-caseras.png',
+                'price' => 12000,
+            ],
+            [
+                'title' => 'Galletitas decoradas con glasé',
+                'description' => 'Practicá técnicas de delineado y relleno para decorar tus galletitas.',
+                'category' => 'Decoración',
+                'date' => '2026-12-05',
+                'location' => 'Online',
+                'image' => '/images/galletitas-decoradas.png',
+                'price' => 14000,
+            ],
+            [
+                'title' => 'Técnicas de merengue',
+                'description' => 'Aprendé las diferencias y los usos del merengue italiano, suizo y francés.',
+                'category' => 'Pastelería',
+                'date' => '2026-12-12',
+                'location' => 'Dulce Estudio - Aula 2',
+                'image' => '/images/merengue-italiano.jpg',
+                'price' => 15000,
+            ],
+            [
+                'title' => 'Macarons desde cero',
+                'description' => 'Conocé los pasos para preparar macarons, desde las tapas hasta sus rellenos.',
+                'category' => 'Pastelería',
+                'date' => '2026-12-19',
+                'location' => 'Dulce Estudio - Aula 1',
+                'image' => '/images/macarons.png',
+                'price' => 20000,
+            ],
+            [
+                'title' => 'Decoración de galletitas para celebraciones',
+                'description' => 'Combiná colores y diseños para crear galletitas decoradas para distintas ocasiones.',
+                'category' => 'Decoración',
+                'date' => '2027-01-09',
+                'location' => 'Online',
+                'image' => '/images/galletitas-celebraciones.png',
+                'price' => 16000,
+            ],
+        ];
+
+        foreach ($eventos as $evento) {
+            Event::create($evento);
+        }
+    }
+}
