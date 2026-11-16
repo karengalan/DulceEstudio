@@ -1,11 +1,11 @@
 import { Link } from '@inertiajs/react'
 import Header from '../../Components/Header.jsx'
 import Footer from '../../Components/Footer.jsx'
+import { formatearFecha, formatearPrecio } from '../../utils/format.js'
 
 export default function Show({ event }) {
-    const [anio, mes, dia] = event.date.split('-')
-    const fechaVisible = `${dia}-${mes}-${anio}`
-    const precioVisible = Number(event.price).toLocaleString('es-AR')
+    const fechaVisible = formatearFecha(event.date)
+    const precioVisible = formatearPrecio(event.price)
 
     return (
         <div className="flex min-h-screen flex-col">

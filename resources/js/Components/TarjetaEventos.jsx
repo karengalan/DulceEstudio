@@ -1,8 +1,9 @@
 import { Link } from '@inertiajs/react'
+import { formatearFecha, formatearPrecio } from '../utils/format.js'
+
 function TarjetaEvento({ evento }) {
-    const [anio, mes, dia] = evento.date.split('-')
-    const fechaVisible = `${dia}-${mes}-${anio}`
-    const precioVisible = Number(evento.price).toLocaleString('es-AR')
+    const fechaVisible = formatearFecha(evento.date)
+    const precioVisible = formatearPrecio(evento.price)
     return (
         <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-[#BD93BD] bg-white text-[#242423] shadow-sm">
             <img
