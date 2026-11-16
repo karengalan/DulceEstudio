@@ -34,7 +34,43 @@ Este proyecto corresponde al Trabajo Práctico 4 de Programación Web Avanzada. 
 - Búsqueda por nombre, sin distinguir mayúsculas y minúsculas.
 - Combinación del filtro por categoría con la búsqueda.
 - Mensaje cuando no se encuentran resultados.
+- Vista de detalle de cada taller en `/eventos/{id}`.
+- Categorías del filtro generadas a partir de los talleres cargados.
+- Imágenes optimizadas en formato WebP para una carga más rápida.
 - Diseño adaptable a celulares, tablets y computadoras.
+
+## Estructura de componentes y estado
+
+### Rutas
+
+| Ruta | Qué hace | Página de React |
+|---|---|---|
+| `/` | Redirige a `/eventos`. | - |
+| `/eventos` | Lista los talleres ordenados por fecha. | `Events/Index` |
+| `/eventos/{id}` | Muestra el detalle de un taller. Si el id no existe, responde 404. | `Events/Show` |
+
+### Flujo de datos
+
+`EventController` consulta los talleres con Eloquent y los envía a la página mediante Inertia. Cada página de React los recibe por props: `events` en `Index` y `event` en `Show`.
+
+### Componentes
+
+- `Pages/Events/Index.jsx`: página del listado. Guarda el estado y calcula la lista de talleres a mostrar.
+- `Pages/Events/Show.jsx`: página con el detalle de un taller.
+- `Components/Header.jsx`, `Hero.jsx` y `Footer.jsx`: encabezado, presentación y pie de página.
+- `Components/ListaCategorias.jsx` y `TarjetaCategorias.jsx`: botones del filtro por categoría.
+- `Components/Buscador.jsx`: campo de búsqueda por nombre.
+- `Components/ListaEventos.jsx` y `TarjetaEventos.jsx`: lista de talleres y tarjeta de cada uno, con enlace al detalle.
+- `utils/format.js`: funciones `formatearFecha` y `formatearPrecio`, usadas en la tarjeta y en el detalle.
+
+### Estado
+
+El estado vive en `Index.jsx` con `useState`:
+
+- `categoriaSeleccionada`: categoría activa, que empieza en `Todos`.
+- `busqueda`: texto escrito en el buscador.
+
+Con esos dos valores, `Index` filtra los talleres y le pasa a `ListaEventos` solo los que coinciden. Las categorías se obtienen de los propios talleres, por lo que si se agrega una nueva en la base, aparece sola en el filtro. `ListaCategorias` y `Buscador` reciben el valor actual y una función para modificarlo, y no guardan estado propio.
 
 ## Instrucciones de ejecución
 
