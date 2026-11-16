@@ -1,4 +1,4 @@
-import imagenPasteleria from '../assets/img/hero-pasteleria.png'
+import imagenPasteleria from '../assets/img/hero-pasteleria.webp'
 
 function Hero() {
     return (

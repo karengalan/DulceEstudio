@@ -16,7 +16,7 @@ class EventSeeder extends Seeder
                 'category' => 'Pastelería',
                 'date' => '2026-11-07',
                 'location' => 'Dulce Estudio - Aula 1',
-                'image' => '/images/pasteleria-francesa.png',
+                'image' => '/images/pasteleria-francesa.webp',
                 'price' => 18000,
             ],
             [
@@ -25,7 +25,7 @@ class EventSeeder extends Seeder
                 'category' => 'Repostería vegana',
                 'date' => '2026-11-14',
                 'location' => 'Online',
-                'image' => '/images/reposteria-vegana.png',
+                'image' => '/images/reposteria-vegana.webp',
                 'price' => 15000,
             ],
             [
@@ -34,7 +34,7 @@ class EventSeeder extends Seeder
                 'category' => 'Panadería',
                 'date' => '2026-11-21',
                 'location' => 'Dulce Estudio - Aula 2',
-                'image' => '/images/panaderia-artesanal.png',
+                'image' => '/images/panaderia-artesanal.webp',
                 'price' => 16000,
             ],
             [
@@ -43,7 +43,7 @@ class EventSeeder extends Seeder
                 'category' => 'Pastelería',
                 'date' => '2026-11-28',
                 'location' => 'Dulce Estudio - Aula 1',
-                'image' => '/images/galletitas-caseras.png',
+                'image' => '/images/galletitas-caseras.webp',
                 'price' => 12000,
             ],
             [
@@ -52,7 +52,7 @@ class EventSeeder extends Seeder
                 'category' => 'Decoración',
                 'date' => '2026-12-05',
                 'location' => 'Online',
-                'image' => '/images/galletitas-decoradas.png',
+                'image' => '/images/galletitas-decoradas.webp',
                 'price' => 14000,
             ],
             [
@@ -61,7 +61,7 @@ class EventSeeder extends Seeder
                 'category' => 'Pastelería',
                 'date' => '2026-12-12',
                 'location' => 'Dulce Estudio - Aula 2',
-                'image' => '/images/merengue-italiano.jpg',
+                'image' => '/images/merengue-italiano.webp',
                 'price' => 15000,
             ],
             [
@@ -70,7 +70,7 @@ class EventSeeder extends Seeder
                 'category' => 'Pastelería',
                 'date' => '2026-12-19',
                 'location' => 'Dulce Estudio - Aula 1',
-                'image' => '/images/macarons.png',
+                'image' => '/images/macarons.webp',
                 'price' => 20000,
             ],
             [
@@ -79,7 +79,7 @@ class EventSeeder extends Seeder
                 'category' => 'Decoración',
                 'date' => '2027-01-09',
                 'location' => 'Online',
-                'image' => '/images/galletitas-celebraciones.png',
+                'image' => '/images/galletitas-celebraciones.webp',
                 'price' => 16000,
             ],
         ];
