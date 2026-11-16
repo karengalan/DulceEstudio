@@ -1,14 +1,7 @@
 import TarjetaCategorias from './TarjetaCategorias.jsx'
 
-const categorias = [
-    'Todos',
-    'Pastelería',
-    'Repostería vegana',
-    'Panadería',
-    'Decoración',
-]
-
 function ListaCategorias({
+    categorias,               
     categoriaSeleccionada,
     onSeleccionarCategoria,
 }) {

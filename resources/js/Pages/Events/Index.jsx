@@ -9,7 +9,9 @@ import Footer from '../../Components/Footer.jsx'
 export default function Index({ events }) {
     const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('Todos')
     const [busqueda, setBusqueda] = useState('')
-
+    
+    const categorias = ['Todos', ...new Set(events.map((evento) => evento.category))]
+    
     const textoBuscado = busqueda.trim().toLowerCase()
 
     const eventosFiltrados = events.filter((evento) => {
@@ -31,6 +33,7 @@ export default function Index({ events }) {
                 <Hero />
 
                 <ListaCategorias
+                    categorias={categorias}   
                     categoriaSeleccionada={categoriaSeleccionada}
                     onSeleccionarCategoria={setCategoriaSeleccionada}
                 />
