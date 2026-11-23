@@ -47,6 +47,12 @@ function Header() {
 
                     {auth.user ? (
                         <>
+                            <Link
+                                href="/dashboard"
+                                className="rounded-lg px-3 py-2 font-semibold transition-colors hover:bg-[#F8F1F8] focus-visible:outline-2 focus-visible:outline-[#21694E]"
+                            >
+                                Mis talleres
+                            </Link>
                             <span className="px-3 py-2 font-semibold">
                                 Hola, {auth.user.name}
                             </span>
