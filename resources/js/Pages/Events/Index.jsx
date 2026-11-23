@@ -5,25 +5,33 @@ import ListaCategorias from '../../Components/ListaCategorias.jsx'
 import Buscador from '../../Components/Buscador.jsx'
 import ListaEventos from '../../Components/ListaEventos.jsx'
 import Footer from '../../Components/Footer.jsx'
+import { router } from '@inertiajs/react'
+import Paginacion from '../../Components/Paginacion.jsx'
 
-export default function Index({ events }) {
-    const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('Todos')
-    const [busqueda, setBusqueda] = useState('')
-    
-    const categorias = ['Todos', ...new Set(events.map((evento) => evento.category))]
-    
-    const textoBuscado = busqueda.trim().toLowerCase()
+export default function Index({ events, categorias, filtros }) {
+    const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(filtros.categoria)
+    const [busqueda, setBusqueda] = useState(filtros.busqueda)
 
-    const eventosFiltrados = events.filter((evento) => {
-        const coincideCategoria =
-            categoriaSeleccionada === 'Todos' ||
-            evento.category === categoriaSeleccionada
+    function aplicarFiltros(nuevaBusqueda, nuevaCategoria) {
+        router.get('/eventos', {
+            busqueda: nuevaBusqueda,
+            categoria: nuevaCategoria,
+        }, {
+            preserveState: true,
+            preserveScroll: true,
+            replace: true,
+        })
+    }
 
-        const coincideNombre =
-            evento.title.toLowerCase().includes(textoBuscado)
+    function cambiarBusqueda(valor) {
+        setBusqueda(valor)
+        aplicarFiltros(valor, categoriaSeleccionada)
+    }
 
-        return coincideCategoria && coincideNombre
-    })
+    function cambiarCategoria(valor) {
+        setCategoriaSeleccionada(valor)
+        aplicarFiltros(busqueda, valor)
+    }
 
     return (
         <>
@@ -33,17 +41,19 @@ export default function Index({ events }) {
                 <Hero />
 
                 <ListaCategorias
-                    categorias={categorias}   
+                    categorias={['Todos', ...categorias]}
                     categoriaSeleccionada={categoriaSeleccionada}
-                    onSeleccionarCategoria={setCategoriaSeleccionada}
+                    onSeleccionarCategoria={cambiarCategoria}
                 />
 
                 <Buscador
                     busqueda={busqueda}
-                    onCambiarBusqueda={setBusqueda}
+                    onCambiarBusqueda={cambiarBusqueda}
                 />
 
-                <ListaEventos eventos={eventosFiltrados} />
+                <ListaEventos eventos={events.data} />
+
+                <Paginacion paginacion={events} />
             </main>
 
             <Footer />
