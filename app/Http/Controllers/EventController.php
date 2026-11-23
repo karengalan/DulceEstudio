@@ -46,4 +46,10 @@ class EventController extends Controller
             'event' => $event,
         ]);
     }
+    public function create()
+    {
+        return Inertia::render('Events/Create', [
+            'categorias' => [],
+        ]);
+    }
 }

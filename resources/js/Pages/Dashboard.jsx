@@ -26,6 +26,13 @@ export default function Dashboard() {
                     </p>
 
                     <Link
+                        href="/dashboard/talleres/crear"
+                        className="mr-3 mt-6 inline-block rounded-lg bg-[#21694E] px-4 py-3 font-semibold text-white hover:bg-[#18513B] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#21694E]"
+                    >
+                        Nuevo taller
+                    </Link>
+
+                    <Link
                         href="/eventos"
                         className="mt-6 inline-block rounded-lg bg-[#21694E] px-4 py-3 font-semibold text-white hover:bg-[#18513B] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#21694E]"
                     >
