@@ -27,7 +27,7 @@ class RegisterController extends Controller
         ];
 
         $correo = [
-            'reglas' => ['required', 'email', 'max:255', 'unique:users,email'],
+            'reglas' => ['required', 'email:filter', 'max:255', 'unique:users,email'],
             'mensajes' => [
                 'email.required' => 'Ingresá tu correo electrónico.',
                 'email.email' => 'Ingresá un correo electrónico válido.',

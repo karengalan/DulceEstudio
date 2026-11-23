@@ -33,7 +33,7 @@ export default function Registro() {
                         Crear una cuenta
                     </h1>
 
-                    <form onSubmit={enviarFormulario} className="space-y-5">
+                    <form onSubmit={enviarFormulario} className="space-y-5" noValidate>
                         <div>
                             <label
                                 htmlFor="name"
