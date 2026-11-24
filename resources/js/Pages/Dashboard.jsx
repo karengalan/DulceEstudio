@@ -3,6 +3,7 @@ import Header from '../Components/Header.jsx'
 import Footer from '../Components/Footer.jsx'
 import Paginacion from '../Components/Paginacion.jsx'
 import { formatearFecha, formatearPrecio } from '../utils/format.js'
+import BotonEliminarTaller from '../Components/BotonEliminarTaller.jsx'
 
 export default function Dashboard({ events }) {
     const { auth } = usePage().props
@@ -72,6 +73,7 @@ export default function Dashboard({ events }) {
                                         >
                                             Editar taller
                                         </Link>
+                                        <BotonEliminarTaller evento={evento} />
                                     </div>
                                 </article>
                             ))
