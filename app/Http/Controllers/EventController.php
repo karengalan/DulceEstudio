@@ -38,7 +38,7 @@ class EventController extends Controller
             ],
         ]);
     }
-    public function show($id)
+    public function show(string $id)
     {
         $event = Event::findOrFail($id);
 
@@ -49,6 +49,16 @@ class EventController extends Controller
     public function create()
     {
         return Inertia::render('Events/Create', [
+            'categorias' => [],
+        ]);
+    }
+
+    public function edit(string $id)
+    {
+        $event = Event::findOrFail($id);
+
+        return Inertia::render('Events/Edit', [
+            'event' => $event,
             'categorias' => [],
         ]);
     }

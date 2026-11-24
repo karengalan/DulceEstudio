@@ -1,8 +1,10 @@
 import { Head, Link, usePage } from '@inertiajs/react'
 import Header from '../Components/Header.jsx'
 import Footer from '../Components/Footer.jsx'
+import Paginacion from '../Components/Paginacion.jsx'
+import { formatearFecha, formatearPrecio } from '../utils/format.js'
 
-export default function Dashboard() {
+export default function Dashboard({ events }) {
     const { auth } = usePage().props
 
     return (
@@ -38,6 +40,45 @@ export default function Dashboard() {
                     >
                         Ver catálogo de talleres
                     </Link>
+                    <div className="mt-8 space-y-4">
+                        <h2 className="text-2xl font-semibold text-[#754075]">
+                            Listado de talleres
+                        </h2>
+
+                        {events.data.length === 0 ? (
+                            <p>No hay talleres para mostrar.</p>
+                        ) : (
+                            events.data.map((evento) => (
+                                <article
+                                    key={evento.id}
+                                    className="flex flex-wrap items-center justify-between gap-4 rounded-xl border border-[#BD93BD] bg-white p-4"
+                                >
+                                    <div>
+                                        <h3 className="text-xl font-semibold text-[#754075]">
+                                            {evento.title}
+                                        </h3>
+                                        <p>
+                                            Fecha: {formatearFecha(evento.date)}
+                                        </p>
+                                        <p>
+                                            Precio: ${formatearPrecio(evento.price)}
+                                        </p>
+                                    </div>
+
+                                    <div className="flex flex-wrap gap-3">
+                                        <Link
+                                            href={`/dashboard/talleres/${evento.id}/editar`}
+                                            className="rounded-lg bg-[#21694E] px-4 py-2 font-semibold text-white hover:bg-[#18513B] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#21694E]"
+                                        >
+                                            Editar taller
+                                        </Link>
+                                    </div>
+                                </article>
+                            ))
+                        )}
+
+                        <Paginacion paginacion={events} />
+                    </div>
                 </section>
             </main>
 

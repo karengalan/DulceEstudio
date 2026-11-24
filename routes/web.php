@@ -21,5 +21,9 @@ Route::post('/logout', [LoginController::class, 'destroy'])
 Route::get('/dashboard', [DashboardController::class, 'index'])
     ->middleware('auth');
 
-    Route::get('/dashboard/talleres/crear', [EventController::class, 'create'])
+Route::get('/dashboard/talleres/crear', [EventController::class, 'create'])
     ->middleware('auth');
+
+Route::get('/dashboard/talleres/{id}/editar', [EventController::class, 'edit'])
+    ->middleware('auth');
+
