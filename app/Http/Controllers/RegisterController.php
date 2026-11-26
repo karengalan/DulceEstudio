@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
+use App\Models\Role;
+use Illuminate\Support\Facades\DB;
 
 class RegisterController extends Controller
 {
@@ -56,11 +58,21 @@ class RegisterController extends Controller
             $contrasena['mensajes']
         ));
 
-        $usuario = User::create([
-            'name' => $datos['name'],
-            'email' => $datos['email'],
-            'password' => Hash::make($datos['password']),
-        ]);
+        $usuario = DB::transaction(function () use ($datos) {
+            $rol = Role::firstOrCreate([
+                'name' => 'Organizador',
+            ]);
+
+            $usuario = User::create([
+                'name' => $datos['name'],
+                'email' => $datos['email'],
+                'password' => Hash::make($datos['password']),
+            ]);
+
+            $usuario->roles()->attach($rol->id);
+
+            return $usuario;
+        });
 
         Auth::login($usuario);
         $request->session()->regenerate();
