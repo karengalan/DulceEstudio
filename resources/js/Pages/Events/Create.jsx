@@ -1,9 +1,10 @@
 import { Head, Link, useForm } from '@inertiajs/react'
 import Header from '../../Components/Header.jsx'
 import Footer from '../../Components/Footer.jsx'
+import ErrorCampo from '../../Components/ErrorCampo.jsx'
 
 export default function Create({ categorias = [] }) {
-    const { data, setData } = useForm({
+    const { data, setData, errors } = useForm({
         title: '',
         description: '',
         category_id: '',
@@ -45,6 +46,7 @@ export default function Create({ categorias = [] }) {
                                 maxLength={255}
                                 required
                             />
+                            <ErrorCampo mensaje={errors.title} />
                         </div>
 
                         <div>
@@ -59,6 +61,7 @@ export default function Create({ categorias = [] }) {
                                 rows={4}
                                 required
                             />
+                            <ErrorCampo mensaje={errors.description} />
                         </div>
 
                         <div>
@@ -81,6 +84,7 @@ export default function Create({ categorias = [] }) {
                                     </option>
                                 ))}
                             </select>
+                            <ErrorCampo mensaje={errors.category_id} />
 
                             {categorias.length === 0 && (
                                 <p className="mt-2 text-sm text-[#754075]">
@@ -101,6 +105,7 @@ export default function Create({ categorias = [] }) {
                                 className={claseCampo}
                                 required
                             />
+                            <ErrorCampo mensaje={errors.date} />
                         </div>
 
                         <div>
@@ -116,6 +121,7 @@ export default function Create({ categorias = [] }) {
                                 maxLength={255}
                                 required
                             />
+                            <ErrorCampo mensaje={errors.location} />
                         </div>
 
                         <div>
@@ -132,6 +138,7 @@ export default function Create({ categorias = [] }) {
                                 step="0.01"
                                 required
                             />
+                            <ErrorCampo mensaje={errors.price} />
                         </div>
 
                         <div>
@@ -148,6 +155,7 @@ export default function Create({ categorias = [] }) {
                                 className={claseCampo}
                                 required
                             />
+                            <ErrorCampo mensaje={errors.image} />
                         </div>
 
                         <div className="flex flex-wrap items-center gap-4">

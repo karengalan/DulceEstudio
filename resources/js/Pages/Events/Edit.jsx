@@ -1,9 +1,10 @@
 import { Head, Link, useForm } from '@inertiajs/react'
 import Header from '../../Components/Header.jsx'
 import Footer from '../../Components/Footer.jsx'
+import ErrorCampo from '../../Components/ErrorCampo.jsx'
 
 export default function Edit({ event, categorias = [] }) {
-    const { data, setData } = useForm({
+    const { data, setData, errors } = useForm({
         title: event.title,
         description: event.description,
         category_id: event.category_id ?? '',
@@ -46,6 +47,7 @@ export default function Edit({ event, categorias = [] }) {
                                 maxLength={255}
                                 required
                             />
+                            <ErrorCampo mensaje={errors.title} />
                         </div>
 
                         <div>
@@ -60,6 +62,7 @@ export default function Edit({ event, categorias = [] }) {
                                 rows={4}
                                 required
                             />
+                            	<ErrorCampo mensaje={errors.description} />
                         </div>
 
                         <div>
@@ -86,6 +89,7 @@ export default function Edit({ event, categorias = [] }) {
                                     </option>
                                 ))}
                             </select>
+                            	<ErrorCampo mensaje={errors.category_id} />
 
                             {categorias.length === 0 && (
                                 <p className="mt-2 text-sm text-[#754075]">
@@ -106,6 +110,7 @@ export default function Edit({ event, categorias = [] }) {
                                 className={claseCampo}
                                 required
                             />
+                            <ErrorCampo mensaje={errors.date} />
                         </div>
 
                         <div>
@@ -121,6 +126,7 @@ export default function Edit({ event, categorias = [] }) {
                                 maxLength={255}
                                 required
                             />
+                            	<ErrorCampo mensaje={errors.location} />
                         </div>
 
                         <div>
@@ -137,6 +143,7 @@ export default function Edit({ event, categorias = [] }) {
                                 step="0.01"
                                 required
                             />
+                            	<ErrorCampo mensaje={errors.price} />
                         </div>
 
                         <div>
@@ -163,6 +170,7 @@ export default function Edit({ event, categorias = [] }) {
                                 }
                                 className={claseCampo}
                             />
+                            <ErrorCampo mensaje={errors.image} />
                         </div>
 
                         <div className="flex flex-wrap items-center gap-4">
