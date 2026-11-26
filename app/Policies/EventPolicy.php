@@ -14,18 +14,36 @@ class EventPolicy
 
     public function view(User $user, Event $event): bool
     {
-        return $user->tienePermiso('ver_todos_los_talleres');
+        return $user->tienePermiso('ver_todos_los_talleres')
+            || (
+                $user->tienePermiso('ver_talleres_propios')
+                && $this->esPropietario($user, $event)
+            );
     }
 
 
     public function update(User $user, Event $event): bool
     {
-        return $user->tienePermiso('editar_cualquier_taller');
+        return $user->tienePermiso('editar_cualquier_taller')
+            || (
+                $user->tienePermiso('editar_talleres_propios')
+                && $this->esPropietario($user, $event)
+            );
     }
 
 
     public function delete(User $user, Event $event): bool
     {
-        return $user->tienePermiso('eliminar_cualquier_taller');
+        return $user->tienePermiso('eliminar_cualquier_taller')
+            || (
+                $user->tienePermiso('eliminar_talleres_propios')
+                && $this->esPropietario($user, $event)
+            );
+    }
+
+    private function esPropietario(User $user, Event $event): bool
+    {
+        return isset($event->user_id)
+            && (int) $event->user_id === (int) $user->id;
     }
 }
