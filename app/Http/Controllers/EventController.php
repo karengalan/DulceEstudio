@@ -49,6 +49,7 @@ class EventController extends Controller
     }
     public function create()
     {
+        Gate::authorize('create', Event::class);
         return Inertia::render('Events/Create', [
             'categorias' => [],
         ]);

@@ -12,6 +12,11 @@ class EventPolicy
         return $user->tienePermiso('ver_todos_los_talleres');
     }
 
+    public function create(User $user): bool
+    {
+        return $user->tienePermiso('crear_talleres');
+    }
+
     public function view(User $user, Event $event): bool
     {
         return $user->tienePermiso('ver_todos_los_talleres')

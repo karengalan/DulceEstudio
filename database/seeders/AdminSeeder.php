@@ -22,6 +22,7 @@ class AdminSeeder extends Seeder
                 'ver_todos_los_talleres',
                 'editar_cualquier_taller',
                 'eliminar_cualquier_taller',
+                'crear_talleres',
             ];
 
             foreach ($nombresPermisos as $nombrePermiso) {

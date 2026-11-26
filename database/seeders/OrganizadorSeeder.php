@@ -21,6 +21,7 @@ class OrganizadorSeeder extends Seeder
                 'ver_talleres_propios',
                 'editar_talleres_propios',
                 'eliminar_talleres_propios',
+                'crear_talleres',
             ];
 
             foreach ($nombresPermisos as $nombrePermiso) {
