@@ -53,4 +53,13 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class, 'role_user')
             ->withTimestamps();
     }
+
+    public function tienePermiso(string $permiso): bool
+    {
+        return $this->roles()
+            ->whereHas('permissions', function ($consulta) use ($permiso) {
+                $consulta->where('name', $permiso);
+            })
+            ->exists();
+    }
 }
