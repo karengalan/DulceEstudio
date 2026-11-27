@@ -11,8 +11,6 @@ class EventSeeder extends Seeder
 {
     public function run(): void
     {
-        Event::truncate();
-
         $organizador = User::firstOrCreate(
             ['email' => 'organizador@dulceestudio.com'],
             ['name' => 'Organizador Dulce Estudio', 'password' => 'password']
@@ -101,7 +99,11 @@ class EventSeeder extends Seeder
         foreach ($eventos as $evento) {
             $evento['user_id'] = $organizador->id;
             $evento['category_id'] = $categorias[$evento['category']]->id;
-            Event::create($evento);
+
+            Event::updateOrCreate(
+                ['title' => $evento['title']],
+                $evento
+            );
         }
     }
 }
