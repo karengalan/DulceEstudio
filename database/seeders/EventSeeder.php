@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
 use App\Models\Event;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class EventSeeder extends Seeder
@@ -10,6 +12,16 @@ class EventSeeder extends Seeder
     public function run(): void
     {
         Event::truncate();
+
+        $organizador = User::firstOrCreate(
+            ['email' => 'organizador@dulceestudio.com'],
+            ['name' => 'Organizador Dulce Estudio', 'password' => 'password']
+        );
+
+        $categorias = [];
+        foreach (['Pastelería', 'Repostería vegana', 'Panadería', 'Decoración'] as $nombre) {
+            $categorias[$nombre] = Category::firstOrCreate(['name' => $nombre]);
+        }
 
         $eventos = [
             [
@@ -87,6 +99,8 @@ class EventSeeder extends Seeder
         ];
 
         foreach ($eventos as $evento) {
+            $evento['user_id'] = $organizador->id;
+            $evento['category_id'] = $categorias[$evento['category']]->id;
             Event::create($evento);
         }
     }
