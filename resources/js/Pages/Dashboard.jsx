@@ -5,7 +5,7 @@ import Paginacion from '../Components/Paginacion.jsx'
 import { formatearFecha, formatearPrecio } from '../utils/format.js'
 import BotonEliminarTaller from '../Components/BotonEliminarTaller.jsx'
 
-export default function Dashboard({ events }) {
+export default function Dashboard({ events, permisos = {} }) {
     const { auth } = usePage().props
 
     return (
@@ -28,12 +28,14 @@ export default function Dashboard({ events }) {
                         Desde este panel vas a poder administrar tus talleres.
                     </p>
 
-                    <Link
-                        href="/dashboard/talleres/crear"
-                        className="mr-3 mt-6 inline-block rounded-lg bg-[#21694E] px-4 py-3 font-semibold text-white hover:bg-[#18513B] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#21694E]"
-                    >
-                        Nuevo taller
-                    </Link>
+                    {permisos.crear && (
+                        <Link
+                            href="/dashboard/talleres/crear"
+                            className="mr-3 mt-6 inline-block rounded-lg bg-[#21694E] px-4 py-3 font-semibold text-white hover:bg-[#18513B] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#21694E]"
+                        >
+                            Nuevo taller
+                        </Link>
+                    )}
 
                     <Link
                         href="/eventos"
@@ -67,13 +69,17 @@ export default function Dashboard({ events }) {
                                     </div>
 
                                     <div className="flex flex-wrap gap-3">
-                                        <Link
-                                            href={`/dashboard/talleres/${evento.id}/editar`}
-                                            className="rounded-lg bg-[#21694E] px-4 py-2 font-semibold text-white hover:bg-[#18513B] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#21694E]"
-                                        >
-                                            Editar taller
-                                        </Link>
-                                        <BotonEliminarTaller evento={evento} />
+                                        {evento.permisos?.editar && (
+                                            <Link
+                                                href={`/dashboard/talleres/${evento.id}/editar`}
+                                                className="rounded-lg bg-[#21694E] px-4 py-2 font-semibold text-white hover:bg-[#18513B] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#21694E]"
+                                            >
+                                                Editar taller
+                                            </Link>
+                                        )}
+                                        {evento.permisos?.eliminar && (
+    <BotonEliminarTaller evento={evento} />
+)}
                                     </div>
                                 </article>
                             ))
