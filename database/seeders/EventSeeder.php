@@ -9,6 +9,8 @@ class EventSeeder extends Seeder
 {
     public function run(): void
     {
+        Event::truncate();
+
         $eventos = [
             [
                 'title' => 'Pastelería francesa',
