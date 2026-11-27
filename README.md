@@ -72,6 +72,28 @@ El estado vive en `Index.jsx` con `useState`:
 
 Con esos dos valores, `Index` filtra los talleres y le pasa a `ListaEventos` solo los que coinciden. Las categorías se obtienen de los propios talleres, por lo que si se agrega una nueva en la base, aparece sola en el filtro. `ListaCategorias` y `Buscador` reciben el valor actual y una función para modificarlo, y no guardan estado propio.
 
+## Modelo de datos
+
+El proyecto usa tres tablas relacionadas entre sí.
+
+| Tabla | Qué guarda | Campos principales |
+|---|---|---|
+| `users` | Las personas que usan la plataforma. | `id`, `name`, `email`, `password` |
+| `categories` | Las categorías de los talleres. | `id`, `name` (único) |
+| `events` | Los talleres. | `id`, `user_id`, `category_id`, `title`, `description`, `date`, `location`, `image`, `price` |
+
+### Relaciones
+
+- Un usuario tiene muchos talleres, y cada taller pertenece a un usuario (`hasMany` en `User` y `belongsTo` en `Event`).
+- Una categoría tiene muchos talleres, y cada taller pertenece a una categoría (`hasMany` en `Category` y `belongsTo` en `Event`).
+
+### Claves foráneas de `events`
+
+- `user_id` apunta a `users.id`. Si se elimina el usuario, se eliminan sus talleres.
+- `category_id` apunta a `categories.id`. Si se elimina la categoría, sus talleres quedan sin categoría.
+
+Las dos columnas aceptan valores nulos, porque se agregaron con una migración sobre una tabla que ya tenía talleres. La columna de texto `category` se mantiene por ahora, porque el listado la usa para filtrar. La relación con la tabla `categories` se establece mediante `category_id`.
+
 ## Instrucciones de ejecución
 
 Se necesita PHP 8.2 o superior con PDO MySQL habilitado, Composer, Node.js, npm y MySQL o MariaDB. El proyecto se probó con Node.js 24 y el servicio MySQL de XAMPP.
@@ -108,7 +130,7 @@ Se necesita PHP 8.2 o superior con PDO MySQL habilitado, Composer, Node.js, npm 
    DB_PASSWORD=
    ```
 
-5. Crear las tablas y cargar los talleres. Ejecutar el seeder una vez sobre la base recién creada.
+5. Crear las tablas y cargar los datos de ejemplo. El seeder crea los ocho talleres, las cuatro categorías y un organizador de ejemplo. Ejecutar el seeder sobre la base recién creada.
 
    ```bash
    php artisan migrate
